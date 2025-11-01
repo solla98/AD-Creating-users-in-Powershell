@@ -3,7 +3,7 @@
 </p>
 
 <h1>AD-Creating Users in Powershell</h1>
-This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
+This section demonstrates creating multiple random user accounts in Active Directory using PowerShell scripts.<br />
 
 
 
