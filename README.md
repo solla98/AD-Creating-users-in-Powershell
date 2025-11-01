@@ -1,4 +1,4 @@
-<p align="center">
+ <p align="center">
 <img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory Logo"/>
 </p>
 
@@ -20,55 +20,72 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Windows 10 
 
 ## Table of Contents
-- [Setting up Active Directory in Azure](#setting-up-active-directory-in-azure)
-- [Deploy Active Directory Steps](#deploy-active-directory-steps)
+- [Setup Remote Desktop for non-administrative users on Client-1](#setup-remote-desktop-for-non-administrative-users-on-client-1)
+- [Create users](#create-users)
 
 
-<h2>##Setting up Active Directory in Azure</h2>
+<h2>##Setup Remote Desktop for non-administrative users on Client-1</h2>
 
 <p>
-<img width="1455" height="780" alt="image" src="https://github.com/user-attachments/assets/2ece5062-3d2b-4c84-b3ff-353022981cd4" />
-<img width="1453" height="780" alt="image" src="https://github.com/user-attachments/assets/bf186555-524b-480d-94f4-7058ecc5a480" />
-<img width="1453" height="778" alt="image" src="https://github.com/user-attachments/assets/2a06bd3c-e708-4754-890b-772562944e1c" />
+<img width="1452" height="775" alt="image" src="https://github.com/user-attachments/assets/4a3fe261-39cf-48fb-abe3-51e78a39f345" />
+<img width="1455" height="780" alt="image" src="https://github.com/user-attachments/assets/bd602576-40cf-4c9a-916a-751d4687d654" />
+<img width="1454" height="780" alt="image" src="https://github.com/user-attachments/assets/b351450f-ad0d-4acb-80a7-6d3b82f3c1d1" />
+
 
 
 </p>
 <p>
-Change the private IP address on DC-1 from dynamic to static to ensure consistent network identification.
+Authenticated on Client-1 using mydomain.com\jane_admin. 
+  
+Accessed System Properties, enabled Remote Desktop, and granted Domain Users permission to connect, allowing standard domain users to log in remotely.
+
+Steps : 
+
+1.Log into Client-1 as mydomain.com\jane_admin.
+
+2.Open System Properties.
+
+3.Click Remote Desktop.
+
+4.Enable access and add the Domain Users group to allow non-admin users to connect via Remote Desktop.
+</p>
+<br />
+
+<h2>##Create users</h2>
+
+<p>
+<img width="1455" height="778" alt="image" src="https://github.com/user-attachments/assets/9133ad95-f57e-4f43-8fab-9f335745981d" />
+<img width="1450" height="775" alt="image" src="https://github.com/user-attachments/assets/358b11bc-a5f9-4b44-ad36-9fcdaaa2af51" />
+<img width="810" height="737" alt="image" src="https://github.com/user-attachments/assets/56124c02-7ec6-46c3-906f-cd661dfc6b28" />
+<img width="1454" height="781" alt="image" src="https://github.com/user-attachments/assets/7dc87867-1c46-466f-bb53-d223426c4d73" />
+
+
+</p>
+<p>
+Authenticated on DC-1 using jane_admin, launched PowerShell ISE with administrative privileges, created a new script file, pasted the script contents, executed the script, and verified the successful creation of user accounts
+
+Steps:
+
+1.Log into DC-1 as jane_admin.
+
+2.Launch PowerShell ISE as an administrator.
+
+3.Create a new script file and paste the script contents.
+
+4.Run the script.
+
+5.Observe the automatic creation of domain user accounts.
 </p>
 <br />
 
 <p>
-<img width="1455" height="780" alt="image" src="https://github.com/user-attachments/assets/5a5dcf2f-4c9c-436c-b9fb-9f96a8ee4933" />
-<img width="1453" height="779" alt="image" src="https://github.com/user-attachments/assets/e757a6c4-bba3-41a1-a09b-b6a46c1de841" />
-<img width="1454" height="781" alt="image" src="https://github.com/user-attachments/assets/f7026cc5-49e4-412e-ae16-108414e0a9c6" />
+<img width="1455" height="777" alt="image" src="https://github.com/user-attachments/assets/dff65280-4090-471c-a4b0-8ea731efe010" />
+
 
 </p>
 <p>
-Set Client-1’s DNS server to the private IP address of DC-1 so the system can resolve Active Directory and internal network resources.
-</p>
-<br />
-
-<p>
-<img width="1452" height="780" alt="image" src="https://github.com/user-attachments/assets/159ee708-6282-447c-96dc-e4d94f0ccf87" />
-<img width="1457" height="779" alt="image" src="https://github.com/user-attachments/assets/d4a100e1-b0ae-4892-a42c-a911c501477e" />
-
-</p>
-<p>
-Log into Client-1 and use ping to confirm it can successfully reach DC-1’s private IP address.
-
-Run ipconfig /all on Client-1 to confirm that the DNS server is correctly set to DC-1’s IP address.
+Launch Active Directory Users and Computers (ADUC) on DC-1 and confirm that all accounts created via the script are correctly placed within the _EMPLOYEES Organizational Unit
 </p>
 <br />
 
 
-<p>
-<img width="1387" height="781" alt="image" src="https://github.com/user-attachments/assets/fb7ce4a0-a77b-4bff-b4e7-ffd3bb390199" />
-
-
-</p>
-
-<p>
-Sign in to DC-1, run ipconfig /all, and review the DNS server values to see how they differ from the configuration on Client-1.
-</p>
-<br />
